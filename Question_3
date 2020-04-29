@@ -1,0 +1,4 @@
+3. # Number of different users that has sent a transfer in CFA
+        SELECT COUNT(DISTINCT(u_id)) AS cfa_transferers_count
+        FROM transfers
+        WHERE send_amount_currency = 'CFA';
