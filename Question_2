@@ -1,0 +1,4 @@
+2. # Number of transfers with currency as CFA
+        SELECT COUNT(transfer_id) AS cfa_transfer_count 
+        FROM transfers
+        WHERE send_amount_currency = 'CFA';
