@@ -1,0 +1,4 @@
+10. # Which wallet have sent more than 10000000 CFA in the last month
+SELECT transfers.source_wallet_id, transfers.send_amount_scalar FROM transfers
+WHERE send_amount_currency = 'CFA'
+AND send_amount_scalar > 10000000;
