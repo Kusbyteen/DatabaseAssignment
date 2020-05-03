@@ -1,8 +1,15 @@
 6. # Agent transaction volume by city
 SELECT agents.city, SUM(agent_transactions.amount) AS transaction_volume
-    FROM agent_transactions
-    WHERE (agent_transactions.when_created >= DATE_TRUNC('week', CURRENT_TIMESTAMP - interval '1 weeek'))
-    AND (agent_transactions.when_created < DATE_TRUNC('week', CURRENT_TIMESTAMP))
-    LEFT JOIN agents
-    ON agents.agent_id = agent_transactions.agent_id
-    GROUP BY city;
+FROM agent_transactions
+WHERE (agent_transactions.when_created >= DATE_TRUNC('week', CURRENT_TIMESTAMP - interval '1 weeek'))
+AND (agent_transactions.when_created < DATE_TRUNC('week', CURRENT_TIMESTAMP))
+LEFT JOIN agents
+ON agents.agent_id = agent_transactions.agent_id
+GROUP BY city;
+
+
+SELECT agents.city, SUM(agent_transactions.amount) AS transaction_volume
+FROM agent_transactions, agents
+WHERE (agent_transactions.when_created = DATE_TRUNC ('week', CURRENT_TIMESTAMP - interval '1 week'))
+AND agent_transactions.when_created < DATE_TRUNC('week', CURRENT_TIMESTAMP)
+GROUP BY city; 
