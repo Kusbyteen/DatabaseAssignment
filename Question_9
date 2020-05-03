@@ -1,10 +1,10 @@
 9. #  Adding columns for transaction count and number of unique senders
 SELECT agents.city, SUM(transfer.send_amount_scalar) AS transaction_scalar,
-    COUNT(agent_transactions.amount) AS transaction_volume, transfers.kind AS transfer_kind, 
-    COUNT(DISTINCT(transfers.transfer_id)) AS unique_senders
-    FROM transfers
-    WHERE (agent_transactions.when_created >= DATE_TRUNC('week', CURRENT_TIMESTAMP - interval '1 weeek'))
-    AND agent_transactions.when_created < DATE_TRUNC('week', CURRENT_TIMESTAMP)
-    LEFT JOIN agents
-    ON agents.agent_id =transfers.transfer_id
-    GROUP BY country, kind;
+COUNT(agent_transactions.amount) AS transaction_volume, transfers.kind AS transfer_kind, 
+COUNT(DISTINCT(transfers.transfer_id)) AS unique_senders
+FROM transfers
+WHERE (agent_transactions.when_created >= DATE_TRUNC('week', CURRENT_TIMESTAMP - interval '1 weeek'))
+AND agent_transactions.when_created < DATE_TRUNC('week', CURRENT_TIMESTAMP)
+LEFT JOIN agents
+ON agents.agent_id =transfers.transfer_id
+GROUP BY country, kind;
