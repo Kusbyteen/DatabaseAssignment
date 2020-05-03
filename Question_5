@@ -16,5 +16,5 @@
             END
         ) AS "net_withdrawers_count"
         FROM agent_transactions
-        WHERE (when_created >= DATE_TRUNC('week', CURRENT_TIMESTAMP - interval '1 week')
-        AND  (when_created < DATE_TRUNC('week', CURRENT_TIMESTAMP);
+        WHERE (when_created >= DATE_TRUNC('week', CURRENT_TIMESTAMP - interval '1 week'))
+        AND  (when_created < DATE_TRUNC('week', CURRENT_TIMESTAMP));
