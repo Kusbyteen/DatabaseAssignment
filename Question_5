@@ -1,5 +1,5 @@
 5.# Find number of net_depositors vs net_withdrawers
-        SELECT SUM(
+        SELECT COUNT(
             CASE
             WHEN amount < 0 THEN
                 1
@@ -7,7 +7,7 @@
                 0
             END
         ) AS "net_depositors_count",
-            SUM(
+            COUNT(
             CASE
             WHEN amount > 0 THEN
                 1
