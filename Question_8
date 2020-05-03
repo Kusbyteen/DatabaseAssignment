@@ -1,0 +1,9 @@
+9. # Building a send volume by country and kind
+SELECT agents.city, SUM(transfer.send_amount_scalar) AS transaction_scalar,transfers.kind AS transfer_kind
+    FROM transfers
+    WHERE (agent_transactions.when_created >= DATE_TRUNC('week', CURRENT_TIMESTAMP - interval '1 weeek'))
+    AND agent_transactions.when_created < DATE_TRUNC('week', CURRENT_TIMESTAMP)
+    LEFT JOIN agents
+    ON agents.agent_id = transfers.transfer_id
+    GROUP BY country, kind;
+
